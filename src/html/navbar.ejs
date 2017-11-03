@@ -1,0 +1,60 @@
+<% if (mode=="read") { %>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <% } else { %>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <% } %>    
+
+    <a class="navbar-brand" href="/">IT 討論中心</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/posts/?tab=tech">技術文章 </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts/?tab=job">IT徵才</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/posts/?tab=event">IT活動</a>
+        </li>
+      </ul>
+      <% if (mode=="edit") { %>
+       <h5 class="mb-0 text-light mr-3">編輯模式</h5>
+      <% } %>  
+      <div class="d-flex justify-content-end">
+      <% if (username) { %>
+        <h2 class="mr-3 text-light mb-0">Hi
+          <%= username %>
+        </h2>
+        <a href="/posts/add" class="btn btn-warning mr-3">新增文章</a>
+
+        <div class="dropdown show mr-md-3">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-cog" aria-hidden="true"></i>
+          
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="/config">變更密碼</a>
+            <% if (mode=='read') { %>
+            <a class="dropdown-item" href="/mode?mode=edit&path= <%= path %> &tab=<%= tab %>">編輯模式</a>
+            <% } else { %>
+            <a class="dropdown-item" href="/mode?mode=read&path= <%= path %> &tab=<%= tab %>">閱讀模式</a>
+            <% } %>
+          </div>
+        </div>
+
+        <a href="/logout" class="btn btn-outline-warning mr-3">登出</a>
+     
+
+        <% } else {
+          var id = "null"  %>
+          <a href="/login/<%= id %>" class="btn btn-outline-success mr-3">登入</a>
+          <a href="/register" class="btn btn-outline-light">註冊</a>
+          <% } %>
+      </div>
+    </div>
+  </nav>

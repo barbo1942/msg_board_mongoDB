@@ -1,0 +1,26 @@
+
+/* body {
+  background-color: gray 
+} */
+.badge-tech {
+  background-color: green
+}
+.badge-job {
+  background-color: red
+}
+.badge-event {
+  background-color: blueviolet
+}
+.content {
+  height: 3rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  /* ... */
+  -webkit-line-clamp: 2
+}
+
+.main {
+  min-height: calc(100vh - (56px + 115px));
+  /* border: 1px solid black; */
+}

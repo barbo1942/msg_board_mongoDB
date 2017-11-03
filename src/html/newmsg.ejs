@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>newPost</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">  
+</head>
+<body>
+
+    <%- include('navbar',{
+      path : 'post',
+      tab: null
+    })
+    %>
+  <div class="container mt-5">
+    <h2>新增留言</h2>
+    <form action="/msg/add" method="post">
+      <h5>作者: <%= username %></h5>
+      <input type="text" name="post_id" value="<%= post_id %>"> 
+      <div class="form-group mt-4">
+        <label for="content">內容</label>
+        <textarea name="content" id="content" cols="30" rows="5" class="form-control"  ></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit">送出</button>
+    </form>
+  </div>
+</body>
+</html>

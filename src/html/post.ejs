@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Post</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+  <link rel="stylesheet" type="text/css" href="/css/all.css">
+<!-- 
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.js" integrity="sha256-tA8y0XqiwnpwmOIl3SGAcFl2RvxHjA8qp0+1uCGmRmg="
+    crossorigin="anonymous"></script> -->
+
+</head>
+
+<body>
+  <% for (key in post.tab ) {
+    var tab = key
+  }%>
+  <%- include('navbar',{
+    path : 'post',
+    tab: tab
+  })
+  %>
+  <div class="container mt-5">
+
+    <session>
+     
+      <nav class="breadcrumb mt-3 ">
+        <a class="breadcrumb-item" href="/">全部文章</a>
+        <% for(key in post.tab) { %>
+        <a class="breadcrumb-item" href="/posts?tab=<%= key %>"> <%= post.tab[key] %></a>
+        <% } %>
+        <a class="breadcrumb-item disabled text-secondary"  ><%= post.title %></a>
+      </nav>
+
+     
+      <div class="header mb-3">
+        <h2 class=""><%= post.title %></h2>
+      </div>
+      
+      <div class="info d-flex  text-secondary">
+        
+        <div class="like mr-3 "><i class="fa fa-heart-o text-danger " aria-hidden="true"></i>
+          <%= post.like %>
+        </div>
+        <div class="explore mr-3"> 人氣：<%= post.explore %></div>
+
+        <% for(key in post.tab) { %>
+         <a href="/posts?tab=<%= key %>"> 
+        <div class="badge badge-<%= key %> badge-pill my-1"  style="padding-top: 0.2rem"> 
+          <%= post.tab[key] %>
+        </div>
+        </a>
+        <% } %>
+
+        <div class="ahthor d-flex mr-3 text-secondary ml-auto "  >
+            <p class="mb-0" >作者：</p>
+            <a href="#" class="text-info"><%= post.author %></a>
+        </div>
+        <p class="text-secondary mb-0 mr-5"><%= post.createTime %></p>
+
+
+      </div>
+      
+      <hr>
+      <p class="">
+        <%= post.content %>
+      </p>
+      <a href="/posts/like/<%= post._id %>" class="pressLike ml-auto mr-4">
+      <i class="fa fa-heart text-danger mr-1" aria-hidden="true"></i>按讚
+      </a>
+    </session>
+    <hr>
+    <a href="/msg/add/<%= post._id %>" class="btn btn-info mb-4"> 發表留言</a>
+    <% if (msgs.length !=0) { %>
+    <h4><%= msgs.length %>則留言</h4>
+
+      <% for (let i =0; i< msgs.length; i++) { %>
+      <div class="card mt-3">
+        <div class="card-header d-flex justify-content-between pb-0">
+          <p class=""><%= msgs[i].author %></p>
+          <p class="text-secondary"><%= msgs[i].createTime %></p>
+        </div>
+        <div class="card-body">
+          <%= msgs[i].content%>
+        </div>
+
+      </div>
+      <% } %>
+    <% } %>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+  crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+  crossorigin="anonymous"></script>
+
+</body>
+
+</html>
